@@ -1,0 +1,35 @@
+{
+    "2019": {
+        "parties": {
+            "Vlaams Belang": "18,5%",
+            "N-VA": "24,8%",
+            "Vooruit": "10,1%",
+            "PVDA": "5,3%",
+            "Open VLD": "13,1%",
+            "CD&V": "15,4%",
+            "Groen": "10,1%"
+        }
+    },
+    "2022": {
+        "parties": {
+            "Vlaams Belang": "22,9%",
+            "N-VA": "22,4%",
+            "Vooruit": "15,5%",
+            "PVDA": "9,1%",
+            "Open VLD": "10,2%",
+            "CD&V": "8,7%",
+            "Groen": "9,4%"
+        }
+    },
+    "2023": {
+        "parties": {
+            "Vlaams Belang": "24,6%",
+            "N-VA": "21%",
+            "Vooruit": "16,9%",
+            "PVDA": "9,5%",
+            "Open VLD": "9,3%",
+            "CD&V": "9,2%",
+            "Groen": "7,9%"
+        }
+    }
+}
