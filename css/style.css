@@ -25,7 +25,6 @@
     --global-textColor-meta: var(--color-neutral-500);
     --global-backgroundColor: var(--color-neutral-100);
     --global-foregroundColor: white;
-    --global-input-background: var(--color-neutral-100);
 
     --global-fontSize: 14;
 
@@ -38,7 +37,6 @@
         --global-textColor-meta: var(--color-neutral-500);
         --global-backgroundColor: var(--color-neutral-900);
         --global-foregroundColor: var(--color-neutral-800);
-        --global-input-background: var(--color-neutral-700);
     }
 } */
 
@@ -69,7 +67,7 @@
 }
 
 html {
-    font-family: "inter", sans-serif;
+    font-family: "Inter", sans-serif;
     line-height: 1.5;
     color: var(--global-textColor);
     background-color: var(--global-backgroundColor);
@@ -92,6 +90,7 @@ svg {
 }
 
 h2 {
+    font-weight: 500;
     font-size: calc(16/var(--global-fontSize)*1rem);
 }
 
