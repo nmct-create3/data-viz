@@ -19,9 +19,9 @@ const drawArc = (([cx, cy], [rx, ry], [t1, Δ], φ,) => {
     returns a SVG path element that represent a ellipse.
     cx,cy → center of ellipse
     rx,ry → major minor radius
-    t1 → start angle, in radian.
-    Δ → angle to sweep, in radian. positive.
-    φ → rotation on the whole, in radian
+    t1 → start angle, in degrees.
+    Δ → angle to sweep, in degrees. positive.
+    φ → rotation on the whole, in degrees
     Based on:
     URL: SVG Circle Arc http://xahlee.info/js/svg_circle_arc.html
     Version 2019-06-19
@@ -31,6 +31,8 @@ const drawArc = (([cx, cy], [rx, ry], [t1, Δ], φ,) => {
     // convert Δ from degree to radian
     Δ = Δ / 360 * 2 * π;
     Δ = Δ % (2 * π);
+    // convert φ from degree to radian
+    φ = φ / 360 * 2 * π;
     const rotMatrix = f_rotate_matrix(φ);
     const [sX, sY] = (f_vec_add(f_matrix_times(rotMatrix, [rx * cos(t1), ry * sin(t1)]), [cx, cy]));
     const [eX, eY] = (f_vec_add(f_matrix_times(rotMatrix, [rx * cos(t1 + Δ), ry * sin(t1 + Δ)]), [cx, cy]));
@@ -83,8 +85,6 @@ const renderChart = obj => {
 
     // draw the different paths
     const keys = data[obj].ages;
-    // rewrite without the name parties
-    // const keys = Object.values(data);
 
     // for each key in the keys object, draw a path
     Object.keys(keys).forEach((key, i) => {
@@ -100,7 +100,7 @@ const renderChart = obj => {
     });
 }
 
-const updatePaths = keys => {
+const updatePaths = obj => {
     // let sweep = 0;
     // let $path;
     // Object.keys(keys).forEach(key => {
@@ -113,6 +113,8 @@ const updatePaths = keys => {
     //     $path.setAttribute(`d`, drawArc([200, 200], [150, 150], [length + sweep, pathLength], 0));
     //     sweep += pathLength + gap;
     // });
+
+    const keys = data[obj].ages;
 
     let totalOffset = 0;
     Object.keys(keys).forEach((key, i) => {
@@ -133,14 +135,15 @@ const updatePaths = keys => {
 const renderLegend = obj => {
     const keys = data[obj].ages;
     $legendEl.innerHTML = ``;
-    // $legendEl.innerHTML += `<h2>${obj}</h2>`;
     $legendEl.innerHTML += `<ul class="legend"></ul>`;
     const $legend = document.querySelector(`.legend`);
-    $legend.innerHTML += Object.keys(keys).map((key, i) => {
-        return `<li style="--legendColor: var(--color-${i + 1})" class="legend__item"><span class="legend__key">${key}</span> <span class="legend__value">${keys[key]}</span></li>`;
-    }).join(``);
 
-    updatePaths(keys);
+    $legend.innerHTML += Object.keys(keys).map((key, i) => {
+        return `<li style="--legendColor: var(--color-${i + 1})" class="legend__item">
+                    <span class="legend__key">${key}</span>
+                    <span class="legend__value">${keys[key]}</span>
+                </li>`;
+    }).join(``);
 }
 
 
@@ -171,6 +174,7 @@ const renderControls = data => {
     $radios.forEach(radio => {
         radio.addEventListener(`change`, event => {
             renderLegend(event.target.value);
+            updatePaths(event.target.value);
         });
     });
 
@@ -184,6 +188,7 @@ const getData = async () => {
 
     renderControls(data);
     renderChart(Object.keys(data)[0]);
+    updatePaths(Object.keys(data)[0]);
     renderLegend(Object.keys(data)[0]);
 };
 
