@@ -1,23 +1,23 @@
 @import"https://unpkg.com/open-props/easings.min.css";
 
 :root {
-    --color-1: lch(58.62 76.08 16 / 1);
-    --color-2: lch(68.71 66.97 40 / 1);
-    --color-3: lch(84.69 61.01 80 / 1);
-    --color-4: lch(68.91 59.98 160 / 1);
-    --color-5: lch(58 48.13 210 / 1);
-    --color-6: lch(49.68 85.07 290 / 1);
+    --color-1: oklch(0.67 0.23 12.3 / 1);
+    --color-2: oklch(0.74 0.17 34.45);
+    --color-3: oklch(0.87 0.14 83.63);
+    --color-4: oklch(0.71 0.17 161.22);
+    --color-5: oklch(0.63 0.15 206.52);
+    --color-6: oklch(0.59 0.23 270.24);
 
-    --color-neutral-050: lch(96.54 5 290 / 1);
-    --color-neutral-100: lch(90 5 290 / 1);
-    --color-neutral-200: lch(80 5 290 / 1);
-    --color-neutral-300: lch(70 5 290 / 1);
-    --color-neutral-400: lch(60 10 290 / 1);
-    --color-neutral-500: lch(50 10 290 / 1);
-    --color-neutral-600: lch(40 12.5 290 / 1);
-    --color-neutral-700: lch(20 15 290 / 1);
-    --color-neutral-800: lch(10 10 290 / 1);
-    --color-neutral-900: lch(5 5 290 / 1);
+    --color-neutral-050: oklch(0.97 0.01 291.07);
+    --color-neutral-100: oklch(0.91 0.01 291.03);
+    --color-neutral-200: oklch(0.83 0.01 290.97);
+    --color-neutral-300: oklch(0.74 0.01 290.89);
+    --color-neutral-400: oklch(0.66 0.03 289.95);
+    --color-neutral-500: oklch(0.57 0.03 289.69);
+    --color-neutral-600: oklch(0.49 0.03 288.73);
+    --color-neutral-700: oklch(0.31 0.04 286);
+    --color-neutral-800: oklch(0.23 0.03 286.47);
+    --color-neutral-900: oklch(0.18 0.02 290.7);
 
     --global-uiColor: var(--color-6);
     --global-textColor: var(--color-neutral-800);
@@ -72,6 +72,10 @@ html {
     color: var(--global-textColor);
     background-color: var(--global-backgroundColor);
     font-size: calc(var(--global-fontSize)/16*1rem);
+
+    /* font smoothing */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -164,7 +168,7 @@ h2 {
 }
 
 .chart__path {
-    stroke-dasharray: var(--stroke-dasharray) calc(var(--path-length) * 2);
+    stroke-dasharray: var(--stroke-dasharray) var(--path-length);
     stroke-dashoffset: var(--stroke-dashoffset);
     /* stroke-linecap: round; */
     transition: all .2s ease-in-out;
