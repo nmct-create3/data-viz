@@ -49,15 +49,6 @@
     --global-input-background: var(--color-neutral-700);
 }
 
-/* [data-theme="light"] {
-    --global-textColor: var(--color-neutral-800);
-    --global-textColor-muted: var(--color-neutral-600);
-    --global-textColor-meta: var(--color-neutral-500);
-    --global-backgroundColor: var(--color-neutral-100);
-    --global-foregroundColor: white;
-    --global-input-background: var(--color-neutral-100);
-} */
-
 /* reset */
 
 * {
@@ -171,7 +162,7 @@ h2 {
     stroke-dasharray: var(--stroke-dasharray) var(--path-length);
     stroke-dashoffset: var(--stroke-dashoffset);
     /* stroke-linecap: round; */
-    transition: all .2s ease-in-out;
+    transition: all .2s var(--ease-in-out-2);
     stroke: var(--strokeColor);
 }
 
@@ -188,16 +179,16 @@ h2 {
 
 .control__label {
     display: block;
-    /* padding: .5rem 1rem; */
-    border-radius: 3rem;
-    /* background-color: var(--global-input-background); */
+    border-radius: 2px;
     color: var(--global-textColor-meta);
     transition: all .1s ease-in-out;
 
     &:has(input:checked) {
-        /* background-color: var(--global-uiColor); */
         color: var(--global-uiColor);
-        /* color: white; */
+    }
+
+    &:has(input:focus-visible) {
+        outline: 1px solid var(--global-uiColor);
     }
 }
 
@@ -251,7 +242,6 @@ h2 {
     right: 1rem;
     display: grid;
     grid-template-areas: "icon";
-    /* color: var(--icon-fill); */
 }
 
 .theme-toggle__icon {
@@ -260,15 +250,17 @@ h2 {
     fill: var(--icon-fill);
     grid-area: icon;
     opacity: 0;
-    scale: 0.8;
-    transition: all .1s ease-in-out;
+    scale: 0.9;
+    rotate: 45deg;
+    transition: all .2s var(--ease-elastic-in-out-1);
+    transform-origin: center;
 }
 
 .theme-toggle__icon--sun {
-    transform-origin: center;
     /* transform: rotate(0deg); */
     opacity: 1;
     scale: 1;
+    rotate: 0deg;
 }
 
 /*
@@ -276,17 +268,17 @@ h2 {
     fill: var(--icon-fill-hover);
 } */
 
-[data-theme-dark] {
+[data-theme="dark"] {
     .theme-toggle__icon--sun {
         opacity: 0;
-        scale: 0.8;
+        scale: 0.9;
+        rotate: 45deg;
     }
 
     .theme-toggle__icon--moon {
-        /* transform-origin: center; */
-        /* transform: rotate(0deg); */
         opacity: 1;
         scale: 1;
+        rotate: 0deg;
     }
 }
 

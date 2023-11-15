@@ -101,22 +101,24 @@ const renderChart = obj => {
 }
 
 const updatePaths = obj => {
-    // let sweep = 0;
-    // let $path;
-    // Object.keys(keys).forEach(key => {
-    //     $path = document.querySelector(`#chart__path--${key}`);
-    //     const length = 180;
-    //     gap = 2;
-    //     keys[key] = keys[key].replace(",", ".");
-    //     const percentage = parseFloat(keys[key]) / 100;
-    //     const pathLength = length * percentage;
-    //     $path.setAttribute(`d`, drawArc([200, 200], [150, 150], [length + sweep, pathLength], 0));
-    //     sweep += pathLength + gap;
-    // });
-
     const keys = data[obj].ages;
 
     let totalOffset = 0;
+    let sweep = 0;
+    let $path;
+
+    // Object.keys(keys).forEach((key, i) => {
+    //     $path = document.querySelector(`#chart__path--${i}`);
+    //     const length = 180;
+    //     gap = 0;
+    //     keys[key] = keys[key].replace(",", ".");
+    //     const percentage = parseFloat(keys[key]) / 100;
+    //     const pathLength = length * percentage;
+    //     $path.setAttribute(`d`, drawArc([200, 200], [175, 175], [length + sweep, pathLength], 0));
+    //     sweep += pathLength + gap;
+    // });
+
+
     Object.keys(keys).forEach((key, i) => {
         const $path = document.querySelector(`#chart__path--${i}`);
         const length = $path.getTotalLength();
@@ -245,16 +247,6 @@ window.onload = () => {
         .addEventListener('click', changeThemePreference)
 }
 
-const init = () => {
-    getData();
-
-    // reflectThemePreference()
-    // now this script can find and listen for clicks on the control
-    // $toggleEl.addEventListener(`click`, changeThemePreference);
-};
-
-init();
-
 // sync with system changes
 window
     .matchMedia('(prefers-color-scheme: dark)')
@@ -262,3 +254,9 @@ window
         theme.value = isDark ? 'dark' : 'light'
         setThemePreference()
     })
+
+const init = () => {
+    getData();
+};
+
+init();
